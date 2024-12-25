@@ -1,25 +1,11 @@
-provider "google" {
-  credentials = file(var.credentials)
-  project     = var.project
-  region  = var.region
-  
+module vpc {
+    source      = "./modules/vpc"
+    credentials = var.credentials
+    network        = var.network
+
 }
 
-resource "google_compute_instance" "vm_instance" {
-  name = var.name
-  machine_type = var.machine_type
-  zone = var.zone
-
-  boot_disk {
-    initialize_params {
-      image = var.image
-    }
-  }
-
-  network_interface {
-    network = "default"
-    access_config {
-      // Ephemeral IP
-    }
-  }
+module gce {
+    source      = "./modules/gce"
+    name        = var.name
 }
