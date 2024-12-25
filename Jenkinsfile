@@ -40,7 +40,7 @@ pipeline {
 		 steps {  
 			  dir('Module')
 			 {
-                sh 'terraform $TF_ACTIONS -var-file=./env_vars/dev.tfvars --auto-approve'
+                sh 'terraform $TF_ACTIONS -var-file=./tfvars/dev.tfvars --auto-approve'
 			 }
 		 }
 	}
