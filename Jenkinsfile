@@ -35,7 +35,16 @@ pipeline {
 			 }
 		 }
 	 }
-				  
+
+
+	stage('Terraform Plan') {
+		 steps {  
+			  dir('Module')
+			 {
+                sh 'terraform plan -var-file=./tfvars/dev.tfvars'
+			 }
+		 }
+	}    
 	stage('Terraform Action') {
 		 steps {  
 			  dir('Module')
